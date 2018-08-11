@@ -12,7 +12,7 @@ Plug 'editorconfig/editorconfig-vim'
 Plug 'tomtom/tcomment_vim'
 Plug 'ctrlpvim/ctrlp.vim'
 Plug 'w0rp/ale'
-Plug 'prettier/vim-prettier', { 'do': 'yarn install' }
+Plug 'prettier/vim-prettier'
 Plug 'godlygeek/tabular'
 Plug 'plasticboy/vim-markdown'
 Plug 'suan/vim-instant-markdown'
@@ -28,6 +28,7 @@ Plug 'ap/vim-css-color'
 Plug 'terryma/vim-multiple-cursors'
 Plug 'kannokanno/previm'
 Plug 'christoomey/vim-tmux-navigator'
+Plug 'posva/vim-vue'
 
 call plug#end()
 
@@ -60,6 +61,9 @@ set smarttab
 
 filetype plugin indent on
 syntax enable
+
+"----- TOGGLE LINE WRAP -----
+nmap <silent> <leader>nw :set wrap!<CR>
 
 "-----EDIT / RELOAD .vimrc
 nmap <silent> <leader>ev :e $MYVIMRC<CR>
@@ -159,8 +163,13 @@ let g:gitgutter_enabled = 0
 nmap <leader>gg : GitGutterToggle<CR>
 
 "------PLUGIN: w0rp/ale
-let g:ale_linters              = { 'javascript': ['jshint'] }
-let g:ale_fixers               = { 'javascript': ['eslint'] }
+let g:ale_linters              = { 'javascript': ['eslint'] }
+let g:ale_fixers               = { 'javascript': ['prettier'] }
+
+"autocmd BufWritePre,TextChanged,InsertLeave *.js,*.css,*.scss,*.less ALEFix
+
+nmap <leader>jf : ALEFix<CR>
+
 let g:ale_lint_on_insert_leave = 1
 let g:ale_completion_enabled   = 1
 let g:ale_sign_column_always   = 1
@@ -195,3 +204,5 @@ map ğğ <Plug>Markdown_MoveToPreviousHeader
 "---- PLUGIN: indent guides
 nmap <leader>ig :IndentGuidesToggle<cr> 
 
+"---- PLUGIN: ctrlp
+let g:ctrlp_custom_ignore = 'node_modules\|DS_Store\'
