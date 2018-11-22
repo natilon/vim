@@ -7,7 +7,7 @@ Plug 'altercation/vim-colors-solarized'
 Plug 'jeetsukumaran/vim-filebeagle'
 Plug 'mgee/lightline-bufferline'
 Plug 'itchyny/lightline.vim'
-Plug 'sheerun/vim-polyglot'
+"Plug 'sheerun/vim-polyglot'
 Plug 'editorconfig/editorconfig-vim'
 Plug 'tomtom/tcomment_vim'
 Plug 'ctrlpvim/ctrlp.vim'
@@ -25,10 +25,13 @@ Plug 'Valloric/YouCompleteMe'
 Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
 Plug 'nathanaelkane/vim-indent-guides'
 Plug 'ap/vim-css-color'
-Plug 'terryma/vim-multiple-cursors'
+"Plug 'terryma/vim-multiple-cursors'
 Plug 'kannokanno/previm'
 Plug 'christoomey/vim-tmux-navigator'
 Plug 'posva/vim-vue'
+Plug 'digitaltoad/vim-pug'
+Plug 'cakebaker/scss-syntax.vim'
+Plug 'junegunn/goyo.vim'
 
 call plug#end()
 
@@ -95,6 +98,9 @@ inoremap <up> <nop>
 inoremap <down> <nop>
 inoremap <left> <nop>
 inoremap <right> <nop>
+
+noremap j gj
+noremap k gk
 
 "-----SPLIT SCREEN----
 nnoremap <silent> vv <C-w>v
@@ -202,7 +208,12 @@ map üü <Plug>Markdown_MoveToNextHeader
 map ğğ <Plug>Markdown_MoveToPreviousHeader
 
 "---- PLUGIN: indent guides
-nmap <leader>ig :IndentGuidesToggle<cr> 
-
+nmap <leader>ig :IndentGuidesToggle<cr>
+let g:indent_guides_guide_size = 1
+"let g:indent_guides_color_change_percent = 3
 "---- PLUGIN: ctrlp
 let g:ctrlp_custom_ignore = 'node_modules\|DS_Store\'
+
+"---- POSVA / VIM-VUE
+" let g:vue_disable_pre_processors=1
+
