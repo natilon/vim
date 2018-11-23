@@ -15,7 +15,7 @@ Plug 'w0rp/ale'
 Plug 'prettier/vim-prettier'
 Plug 'godlygeek/tabular'
 Plug 'plasticboy/vim-markdown'
-Plug 'suan/vim-instant-markdown'
+"Plug 'suan/vim-instant-markdown'
 Plug 'mattn/emmet-vim'
 Plug 'airblade/vim-gitgutter'
 Plug 'tpope/vim-surround'
@@ -32,6 +32,7 @@ Plug 'posva/vim-vue'
 Plug 'digitaltoad/vim-pug'
 Plug 'cakebaker/scss-syntax.vim'
 Plug 'junegunn/goyo.vim'
+Plug 'iamcco/markdown-preview.vim'
 
 call plug#end()
 
@@ -216,4 +217,9 @@ let g:ctrlp_custom_ignore = 'node_modules\|DS_Store\'
 
 "---- POSVA / VIM-VUE
 " let g:vue_disable_pre_processors=1
+"
+"--- PLUGIN: markdown_preview
+" Open preview
+map <leader>mp :MarkdownPreview<cr>
+map <leader>mc :StopMarkdownPreview<cr>
 
