@@ -99,11 +99,6 @@ nmap <leader>q :bdelete<cr>
 "------MOVE AROUND-----
 nnoremap <up> <nop>
 nnoremap <down> <nop>
-nnoremap <left> <nop>
-nnoremap <right> <nop>
-inoremap <up> <nop>
-inoremap <down> <nop>
-inoremap <left> <nop>
 inoremap <right> <nop>
 
 noremap j gj
@@ -235,4 +230,6 @@ map <leader>mc :StopMarkdownPreview<cr>
 map <leader>%% i{% block  %}<cr><cr>{% endblock %}<esc>2k2hi
 map <leader>%i i{% include "" %}<esc>3hi
 map <leader>sp :set paste<cr>p<esc>:set nopaste<cr>
-inoremap %% {%   %}<esc>3h
+inoremap %% {%  %}<esc>2hi
+inoremap {{ {{  }}<esc>2hi
+inoremap %bi <span class="icon has-text-link"><cr><i class="fas fa-check-circle"></i><cr></span><esc>
