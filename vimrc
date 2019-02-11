@@ -53,6 +53,7 @@ set autoread  "reload file if it is changed outside of vim
 set history=1000
 set tabpagemax=50
 set nrformats-=octal
+set wildignore+=*/tmp/*,*.so,*.swp,*.zip,*/node_modules/*,*.png,*.jpg,*.bmp,*.gif,*.exe
 
 set sidescrolloff=5
 set scrolloff=1
@@ -73,6 +74,11 @@ nmap <silent> <leader>nw :set wrap!<CR>
 nmap <silent> <leader>ev :e $MYVIMRC<CR>
 nmap <silent> <leader>sv :so $MYVIMRC<CR>
 
+"syntastic
+let g:syntastic_always_populate_loc_list = 1
+let g:syntastic_auto_loc_list = 1
+let g:syntastic_check_on_open = 1
+let g:syntastic_check_on_wq = 0
 " It seems that vim does not handle sucessive calls of the match command gracefully. Since BufWinEnter commands are executed every time a buffer is displayed (i.e., switching to another file), the match command is executed many times during a vim session. This seems to lead to a memory leak which slowly impacts performance (for example scrolling and writing become unbearably slow). Include the following line to fix the issue:
 
 "1 [http://vim.wikia.com/wiki/Highlight_unwanted_spaces]
@@ -170,8 +176,8 @@ let g:gitgutter_enabled = 0
 nmap <leader>gg : GitGutterToggle<CR>
 
 "------PLUGIN: w0rp/ale
-let g:ale_linters              = { 'javascript': ['eslint'] }
-let g:ale_fixers               = { 'javascript': ['prettier'] }
+let g:ale_linters              = { 'javascript': ['eslint'], 'python':['flake8','pylint'] }
+let g:ale_fixers               = { 'javascript': ['prettier'], 'python':['autopep8','isort','black'] }
 
 "autocmd BufWritePre,TextChanged,InsertLeave *.js,*.css,*.scss,*.less ALEFix
 
@@ -220,6 +226,9 @@ let g:ctrlp_custom_ignore = 'node_modules\|DS_Store\'
 "
 "--- PLUGIN: markdown_preview
 " Open preview
+
+let python_highlight_all=1
 map <leader>mp :MarkdownPreview<cr>
 map <leader>mc :StopMarkdownPreview<cr>
-
+imap %% {%  %}<esc>2hi
+imap {{ {{  }}<esc>2hi
