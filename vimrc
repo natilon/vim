@@ -15,7 +15,7 @@ Plug 'w0rp/ale'
 Plug 'prettier/vim-prettier'
 Plug 'godlygeek/tabular'
 Plug 'plasticboy/vim-markdown'
-"Plug 'suan/vim-instant-markdown'
+Plug 'suan/vim-instant-markdown'
 Plug 'mattn/emmet-vim'
 Plug 'airblade/vim-gitgutter'
 Plug 'tpope/vim-surround'
@@ -230,5 +230,9 @@ let g:ctrlp_custom_ignore = 'node_modules\|DS_Store\'
 let python_highlight_all=1
 map <leader>mp :MarkdownPreview<cr>
 map <leader>mc :StopMarkdownPreview<cr>
-imap %% {%  %}<esc>2hi
-imap {{ {{  }}<esc>2hi
+
+" Django Template tags "
+map <leader>%% i{% block  %}<cr><cr>{% endblock %}<esc>2k2hi
+map <leader>%i i{% include "" %}<esc>3hi
+map <leader>sp :set paste<cr>p<esc>:set nopaste<cr>
+inoremap %% {%   %}<esc>3h
