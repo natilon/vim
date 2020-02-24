@@ -39,8 +39,12 @@ Plug 'iamcco/markdown-preview.vim'
 Plug 'ludovicchabant/vim-gutentags'
 Plug 'mileszs/ack.vim'
 Plug 'ryanoasis/vim-devicons'
+Plug 'burner/vim-svelte'
 " Plug 'phpactor/phpactor', {'for': 'php', 'do': 'composer install'}
-
+Plug 'rust-lang/rust.vim'
+Plug 'mustache/vim-mustache-handlebars'
+Plug 'SirVer/ultisnips'
+Plug 'mbbill/undotree'
 call plug#end()
 
 let mapleader = "\<space>"
@@ -66,9 +70,9 @@ set sidescrolloff=5
 set scrolloff=1
 
 set expandtab
-set tabstop=4
-set softtabstop=4
-set shiftwidth=4
+set tabstop=8
+set softtabstop=2
+set shiftwidth=2
 set smarttab
 
 filetype plugin indent on
@@ -184,9 +188,9 @@ let g:gitgutter_enabled = 0
 nmap <leader>gg : GitGutterToggle<CR>
 
 "------PLUGIN: w0rp/ale
-let g:ale_linters              = { 'javascript': ['eslint'], 'python':['flake8','pylint'] }
-let g:ale_fixers               = { 'javascript': ['prettier'], 'python':['autopep8','isort','black'] }
-
+let g:ale_linters        = { 'javascript': ['eslint'], 'python':['flake8','pylint'], 'svelte': ['stylelint', 'eslint'] }
+let g:ale_fixers         = { 'javascript': ['prettier'], 'python':['autopep8','isort','black'] }
+let g:ale_linter_aliases = {'svelte': ['css', 'javascript']}
 "autocmd BufWritePre,TextChanged,InsertLeave *.js,*.css,*.scss,*.less ALEFix
 
 nmap <leader>jf : ALEFix<CR>
@@ -196,6 +200,9 @@ let g:ale_completion_enabled   = 1
 let g:ale_sign_column_always   = 1
 let g:ale_sign_error           = '>>'
 let g:ale_sign_warning         = '--'
+let g:ale_lint_on_save = 1
+let g:ale_lint_on_enter = 0
+let g:ale_lint_on_text_changed = 'never'
 
 "------PLUGIN: godlygeek/tabular
 vnoremap <silent> <Leader>cee : Tabularize /=<CR>
@@ -213,6 +220,8 @@ autocmd FileType go nmap <leader>b :<C-u>GoBuild %<cr>
 map <leader>g  :YcmCompleter GoToDefinitionElseDeclaration<CR>
 
 au FileType php set omnifunc=phpcomplete#CompletePHP
+
+au! BufNewFile,BufRead *.svelte set ft=html
 
 "-----PLUGIN: previm
 let g:previm_open_cmd = 'open -a Safari'
@@ -239,13 +248,16 @@ let python_highlight_all=1
 map <leader>mp :MarkdownPreview<cr>
 map <leader>mc :StopMarkdownPreview<cr>
 
+"---- MUSTACHE VIM HANDLEBARS
+let g:mustache_abbreviations = 1
+
 " Django Template tags "
 map <leader>%% i{% block  %}<cr><cr>{% endblock %}<esc>2k2hi
 map <leader>%i i{% include "" %}<esc>3hi
 map <leader>sp :set paste<cr>p<esc>:set nopaste<cr>
-inoremap %% {%  %}<esc>2hi
-inoremap {{ {{  }}<esc>2hi
-inoremap %bi <span class="icon has-text-link"><cr><i class="fas fa-check-circle"></i><cr></span><esc>
+" inoremap %% {%  %}<esc>2hi
+" inoremap {{ {{  }}<esc>2hi
+" inoremap %bi <span class="icon has-text-link"><cr><i class="fas fa-check-circle"></i><cr></span><esc>
 
 " autocmd FileType javascript :inoremap <leader>ae .addEventListener("click", () => {})<esc><left>i
 
@@ -261,3 +273,9 @@ endif
 cnoreabbrev Ack Ack!
 
 " let g:fzf_tags_command = 'ctags -R --exclude=node_modules'
+"
+"--- PLUGIN: UltiSnips
+let g:UltiSnipsExpandTrigger="<c-j>"
+nnoremap <Leader>eu :UltiSnipsEdit<CR>
+
+
