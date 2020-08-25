@@ -16,18 +16,12 @@ function! PackInit() abort
   call minpac#add('k-takata/minpac', {'type': 'opt'})
 
   " Add other plugins here.
-  call minpac#add('neoclide/coc.nvim', {'branch': 'release'})
-  call minpac#add('christoomey/vim-tmux-navigator')
   call minpac#add('itchyny/lightline.vim')
   call minpac#add('mengelbrecht/lightline-bufferline')
   call minpac#add('nathanaelkane/vim-indent-guides')
   call minpac#add('jeetsukumaran/vim-filebeagle')
-  call minpac#add('ryanoasis/vim-devicons')
-  call minpac#add('junegunn/fzf')
-  call minpac#add('junegunn/fzf.vim')
   call minpac#add('tomtom/tcomment_vim')
   call minpac#add('tpope/vim-surround')
-  call minpac#add('ludovicchabant/vim-gutentags')
 
   " Load the plugins right now. (optional)
   " packloadall
@@ -82,14 +76,9 @@ set shortmess+=c
 set signcolumn=yes
 " End of CoC Suggestions
 
-" fzf"
-set rtp+=/usr/local/opt/fzf
-set grepprg=rg\ --vimgrep
-
 filetype plugin indent on
 syntax enable
 
-command! -bang -nargs=* Find call fzf#vim#grep('rg --column --line-number --no-heading --fixed-strings --ignore-case --no-ignore --hidden --follow --glob "!.git/*" --color "always" '.shellescape(<q-args>).'| tr -d "\017"', 1, <bang>0)
 
 "Paste content without pain
 map <leader>sp :set paste<cr>p<esc>:set nopaste<cr>
@@ -148,50 +137,6 @@ nnoremap <leader>, :noh<cr>
 set background=dark
 colorscheme solarized
 
-"-----PLUGIN: CoC
-
-" Use tab for trigger completion with characters ahead and navigate.
-inoremap <silent><expr> <TAB>
-      \ pumvisible() ? "\<C-n>" :
-      \ <SID>check_back_space() ? "\<TAB>" :
-      \ coc#refresh()
-inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
-
-function! s:check_back_space() abort
-  let col = col('.') - 1
-  return !col || getline('.')[col - 1]  =~# '\s'
-endfunction
-
-" Use <c-space> to trigger completion.
-inoremap <silent><expr> <c-space> coc#refresh()
-
-" Use <cr> to confirm completion, `<C-g>u` means break undo chain at current
-" position. Coc only does snippet and additional edit on confirm.
-if exists('*complete_info')
-  inoremap <expr> <cr> complete_info()["selected"] != "-1" ? "\<C-y>" : "\<C-g>u\<CR>"
-else
-  imap <expr> <cr> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
-endif
-
-nnoremap <silent> K :call <SID>show_documentation()<CR>
-
-function! s:show_documentation()
-  if (index(['vim','help'], &filetype) >= 0)
-    execute 'h '.expand('<cword>')
-  else
-    call CocAction('doHover')
-  endif
-endfunction
-
-" Highlight the symbol and its references when holding the cursor.
-autocmd CursorHold * silent call CocActionAsync('highlight')
-
-nmap <silent> gd <Plug>(coc-definition)
-nmap <silent> gy <Plug>(coc-type-definition)
-nmap <silent> gi <Plug>(coc-implementation)
-nmap <silent> gr <Plug>(coc-references)
-"--------------------------------------
-
 "-----PLUGIN: lightline
 let g:bufferline_solo_highlight    = 1
 let g:lightline                    = {'colorscheme': 'wombat'}
@@ -222,11 +167,6 @@ endfunction
 " ---- PLUGIN: indent guides
 nmap <leader>ig :IndentGuidesToggle<cr>
 let g:indent_guides_guide_size = 1
-
-"--- PLUGIN: fzf
-nnoremap <C-p> :Files<CR>
-nnoremap <Leader>b :BTags<CR>
-nnoremap <Leader>t :Tags<CR>
 
 "------PLUGIN: tomtom/tcomment_vim
 noremap <silent> <Leader>cc :TComment<CR>
